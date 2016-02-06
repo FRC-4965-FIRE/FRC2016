@@ -5,7 +5,10 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
 import org.usfirst.frc.team4965.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4965.robot.commands.JoystickDrive;
+import org.usfirst.frc.team4965.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4965.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -19,8 +22,10 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static DriveTrain drivetrain;
 
     Command autonomousCommand;
+    Command teleopCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -28,8 +33,10 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		drivetrain = DriveTrain.getInstance();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
+        teleopCommand = new JoystickDrive();
     }
 	
 	public void disabledPeriodic() {
@@ -54,6 +61,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Scheduler.getInstance().add(teleopCommand);
     }
 
     /**

@@ -36,5 +36,30 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	Joystick controller = new Joystick(0);
+	
+	public double leftStickY()
+	{
+		if(controller.getY() < .2 && controller.getY() > -.2)
+		{
+			return 0;
+		}
+			
+		return controller.getY();
+	}
+	
+	public double rightStickY()
+	{
+		if(controller.getRawAxis(5) < .2 && controller.getRawAxis(5) > -.2)
+		{
+			return 0;
+		}
+		
+		return controller.getRawAxis(5);
+	}
+	
+	public double joyTwist()
+	{
+		return controller.getRawAxis(3);
+	}
 }
 

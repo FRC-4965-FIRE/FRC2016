@@ -39,22 +39,22 @@ public class OI {
 	
 	public double leftStickY()
 	{
-		if(controller.getY() < .2 && controller.getY() > -.2)
+		if(controller.getRawAxis(1) < .2 && controller.getRawAxis(1) > -.2)
 		{
 			return 0;
 		}
 			
-		return controller.getY();
+		return controller.getRawAxis(1);
 	}
 	
 	public double rightStickY()
 	{
-		if(controller.getRawAxis(5) < .2 && controller.getRawAxis(5) > -.2)
+		if(controller.getRawAxis(3) < .2 && controller.getRawAxis(3) > -.2)
 		{
 			return 0;
 		}
 		
-		return controller.getRawAxis(5);
+		return controller.getRawAxis(3);
 	}
 	
 	public double joyTwist()

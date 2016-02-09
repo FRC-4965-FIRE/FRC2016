@@ -30,6 +30,8 @@ public class DriveTrain extends Subsystem {
     	
     	drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
     }
     
     public static DriveTrain getInstance()

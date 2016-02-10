@@ -42,7 +42,6 @@ public class DriveTrain extends Subsystem {
     	return instance;
     }
     
-    
     public void tankDrive(double leftSpeed, double rightSpeed)
     {
     	drive.tankDrive(leftSpeed, rightSpeed);

@@ -10,6 +10,8 @@ import org.usfirst.frc.team4965.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4965.robot.commands.JoystickDrive;
 import org.usfirst.frc.team4965.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4965.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team4965.robot.subsystems.Intake;
+import org.usfirst.frc.team4965.robot.subsystems.Launcher;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +25,9 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain drivetrain;
-
+	public static Launcher launcher;
+	public static Intake intake;
+	
     Command autonomousCommand;
     Command teleopCommand;
 
@@ -34,6 +38,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		drivetrain = DriveTrain.getInstance();
+		launcher = Launcher.getInstance();
+		intake = Intake.getInstance();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
         teleopCommand = new JoystickDrive();

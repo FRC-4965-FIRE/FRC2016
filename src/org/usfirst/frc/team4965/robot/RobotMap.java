@@ -16,13 +16,21 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 	
+	//pwm 
 	public static final int PWM_ZERO  = 0;
 	public static final int PWM_ONE   = 1;
 	public static final int PWM_TWO   = 2;
 	public static final int PWM_THREE = 3;
+	public static final int PWM_FOUR  = 4;
+	public static final int PWM_FIVE  = 5;
 	
+	//drivetrain
 	public static final int FrontLeft  = PWM_ZERO;
 	public static final int BackLeft   = PWM_ONE;
 	public static final int FrontRight = PWM_TWO;
 	public static final int BackRight  = PWM_THREE;
+	
+	//launcher
+	public static final int LauncherLeft  = PWM_FOUR;
+	public static final int LauncherRight = PWM_FIVE;
 }

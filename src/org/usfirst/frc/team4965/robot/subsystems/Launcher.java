@@ -18,8 +18,6 @@ public class Launcher extends Subsystem {
     {
     	launcherLeft = new Victor(RobotMap.LauncherLeft);
     	launcherRight = new Victor(RobotMap.LauncherRight);
-    	
-    	launcherRight.setInverted(true);
     }
     
     public static Launcher getInstance()
@@ -33,7 +31,7 @@ public class Launcher extends Subsystem {
     void spinWheels(double speed)
     {
     	launcherLeft.set(speed);
-    	launcherRight.set(speed);
+    	launcherRight.set(-speed);
     }
     
     void stopWheels()

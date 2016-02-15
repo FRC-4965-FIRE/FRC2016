@@ -23,6 +23,8 @@ public class RobotMap {
 	public static final int PWM_THREE = 3;
 	public static final int PWM_FOUR  = 4;
 	public static final int PWM_FIVE  = 5;
+	public static final int PWM_SIX   = 6;
+	public static final int PWM_SEVEN = 7;
 	
 	//drivetrain
 	public static final int FrontLeft  = PWM_ZERO;
@@ -33,4 +35,8 @@ public class RobotMap {
 	//launcher
 	public static final int LauncherLeft  = PWM_FOUR;
 	public static final int LauncherRight = PWM_FIVE;
+	
+	//intake
+	public static final int IntakeArm    = PWM_SIX;
+	public static final int IntakeRoller = PWM_SEVEN;
 }

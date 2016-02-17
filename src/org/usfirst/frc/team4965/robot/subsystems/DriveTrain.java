@@ -14,6 +14,8 @@ public class DriveTrain extends Subsystem {
 	public static DriveTrain instance;
     Victor frontLeft, frontRight, backLeft, backRight;
     RobotDrive drive;
+    
+    public static boolean ReverseDrive = false;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -44,12 +46,18 @@ public class DriveTrain extends Subsystem {
     
     public void tankDrive(double leftSpeed, double rightSpeed)
     {
-    	drive.tankDrive(leftSpeed, rightSpeed);
+    	if(ReverseDrive)
+    		drive.tankDrive(-leftSpeed, -rightSpeed);
+    	else	
+    		drive.tankDrive(leftSpeed, rightSpeed);
     }
     
     public void joystickDrive(double linearSpeed, double rotationSpeed)
     {
-    	drive.arcadeDrive(linearSpeed, rotationSpeed);
+    	if(ReverseDrive)
+    		drive.arcadeDrive(-linearSpeed, -rotationSpeed);
+    	else
+    		drive.arcadeDrive(linearSpeed, rotationSpeed);
     }
 
     public void initDefaultCommand() {

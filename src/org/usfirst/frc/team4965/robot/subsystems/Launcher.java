@@ -2,7 +2,7 @@ package org.usfirst.frc.team4965.robot.subsystems;
 
 import org.usfirst.frc.team4965.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Launcher extends Subsystem {
 	public static Launcher instance;
-    Victor launcherLeft, launcherRight;
+    VictorSP launcherLeft, launcherRight;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
     private Launcher()
     {
-    	launcherLeft = new Victor(RobotMap.LauncherLeft);
-    	launcherRight = new Victor(RobotMap.LauncherRight);
+    	launcherLeft = new VictorSP(RobotMap.LauncherLeft);
+    	launcherRight = new VictorSP(RobotMap.LauncherRight);
     }
     
     public static Launcher getInstance()
@@ -28,13 +28,13 @@ public class Launcher extends Subsystem {
     	return instance;
     }
     
-    void spinWheels(double speed)
+    public void spinWheels(double speed)
     {
     	launcherLeft.set(speed);
     	launcherRight.set(-speed);
     }
     
-    void stopWheels()
+    public void stopWheels()
     {
     	launcherLeft.set(0);
     	launcherRight.set(0);

@@ -27,8 +27,8 @@ public class RobotMap {
 	public static final int PWM_SEVEN = 7;
 	
 	//dio
-	public static final int DIO_ZERO = 0;
-	public static final int DIO_ONE  = 1;
+	/*public static final int DIO_ZERO = 0;
+	public static final int DIO_ONE  = 1;*/
 	
 	//drivetrain
 	public static final int FrontLeft  = PWM_ZERO;
@@ -41,9 +41,9 @@ public class RobotMap {
 	public static final int LauncherRight = PWM_FIVE;
 	
 	//intake
-	public static final int IntakeArm      = PWM_SIX;
-	public static final int IntakeRoller   = PWM_SEVEN;
-	public static final int IntakeInLimit  = DIO_ZERO;
-	public static final int IntakeOutLimit = DIO_ONE;
+	//public static final int IntakeArm      = PWM_SIX;
+	public static final int IntakeRoller   = PWM_SIX;
+	/*public static final int IntakeInLimit  = DIO_ZERO;
+	public static final int IntakeOutLimit = DIO_ONE;*/
 	
 }

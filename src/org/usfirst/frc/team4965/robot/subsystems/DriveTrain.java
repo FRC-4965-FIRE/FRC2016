@@ -4,7 +4,7 @@ import org.usfirst.frc.team4965.robot.RobotMap;
 import org.usfirst.frc.team4965.robot.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 	public static DriveTrain instance;
-    Victor frontLeft, frontRight, backLeft, backRight;
+    VictorSP frontLeft, frontRight, backLeft, backRight;
     RobotDrive drive;
     
     public static boolean ReverseDrive = false;
@@ -23,10 +23,10 @@ public class DriveTrain extends Subsystem {
     {
     	super("DriveTrain");
     	
-    	frontLeft = new Victor(RobotMap.FrontLeft);
-    	frontRight = new Victor(RobotMap.FrontRight);
-    	backLeft = new Victor(RobotMap.BackLeft);
-    	backRight = new Victor(RobotMap.BackRight);
+    	frontLeft = new VictorSP(RobotMap.FrontLeft);
+    	frontRight = new VictorSP(RobotMap.FrontRight);
+    	backLeft = new VictorSP(RobotMap.BackLeft);
+    	backRight = new VictorSP(RobotMap.BackRight);
     	
     	drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
     	
@@ -55,7 +55,7 @@ public class DriveTrain extends Subsystem {
     public void joystickDrive(double linearSpeed, double rotationSpeed)
     {
     	if(ReverseDrive)
-    		drive.arcadeDrive(-linearSpeed, -rotationSpeed);
+    		drive.arcadeDrive(-linearSpeed, rotationSpeed);
     	else
     		drive.arcadeDrive(linearSpeed, rotationSpeed);
     }

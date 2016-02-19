@@ -2,8 +2,8 @@ package org.usfirst.frc.team4965.robot.subsystems;
 
 import org.usfirst.frc.team4965.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Victor;
+//import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,17 +11,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     public static Intake instance;
-    Victor intakeArm, intakeRoller;
-    DigitalInput intakeIn, intakeOut;
+    VictorSP intakeRoller;
+    //DigitalInput intakeIn, intakeOut;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
 	private Intake()
 	{
-		intakeArm = new Victor(RobotMap.IntakeArm);
-		intakeRoller = new Victor(RobotMap.IntakeRoller);
-		intakeIn = new DigitalInput(RobotMap.IntakeInLimit);
-		intakeOut = new DigitalInput(RobotMap.IntakeOutLimit);
+		//intakeArm = new Victor(RobotMap.IntakeArm);
+		intakeRoller = new VictorSP(RobotMap.IntakeRoller);
+		//intakeIn = new DigitalInput(RobotMap.IntakeInLimit);
+		//intakeOut = new DigitalInput(RobotMap.IntakeOutLimit);
 	}
 	
 	public static Intake getInstance()
@@ -32,30 +32,30 @@ public class Intake extends Subsystem {
     	return instance;
 	}
 	
-	void moveArm(double speed)
+	/*public void moveArm(double speed)
 	{
 		intakeArm.set(speed);
-	}
+	}*/
 	
-	void spinIntake(double speed)
+	public void spinIntake(double speed)
 	{
 		intakeRoller.set(speed);
 	}
 	
-	void stopIntake()
+	public void stopIntake()
 	{
 		intakeRoller.set(0);
 	}
 	
-	boolean isIn()
+	/*public boolean isIn()
 	{
 		return intakeIn.get();
 	}
 	
-	boolean isOut()
+	public boolean isOut()
 	{
 		return intakeOut.get();
-	}
+	}*/
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

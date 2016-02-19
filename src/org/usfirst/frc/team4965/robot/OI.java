@@ -44,7 +44,7 @@ public class OI {
 			return 0;
 		}
 			
-		return controller.getRawAxis(1);
+		return Math.pow(controller.getRawAxis(1), 2);
 	}
 	
 	public double rightStickY()
@@ -54,12 +54,12 @@ public class OI {
 			return 0;
 		}
 		
-		return controller.getRawAxis(3);
+		return Math.pow(controller.getRawAxis(3), 2);
 	}
 	
 	public double joyTwist()
 	{
-		return controller.getRawAxis(3);
+		return Math.pow(controller.getRawAxis(3), 2);
 	}
 }
 

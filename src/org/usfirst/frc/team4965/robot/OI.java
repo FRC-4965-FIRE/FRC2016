@@ -1,7 +1,8 @@
 package org.usfirst.frc.team4965.robot;
 
+import org.usfirst.frc.team4965.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -35,31 +36,55 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	Joystick controller = new Joystick(0);
+	Joystick controllerOne = new Joystick(0);
+	Joystick controllerTwo = new Joystick(1);
+	
+	JoystickButton JoyTwo_ButtonZero = new JoystickButton(controllerTwo, 0);
+	JoystickButton JoyTwo_ButtonOne = new JoystickButton(controllerTwo, 1);
+	JoystickButton JoyTwo_ButtonTwo = new JoystickButton(controllerTwo, 2);
+	
+	public OI()
+	{
+		JoyTwo_ButtonZero.whileHeld(new IntakeBall());
+		JoyTwo_ButtonOne.whileHeld(new ReverseIntake());
+		JoyTwo_ButtonTwo.whenPressed(new FireBall());
+	}
 	
 	public double leftStickY()
 	{
-		if(controller.getRawAxis(1) < .2 && controller.getRawAxis(1) > -.2)
+		if(controllerOne.getRawAxis(1) < .2 && controllerOne.getRawAxis(1) > -.2)
 		{
 			return 0;
 		}
-			
-		return Math.pow(controller.getRawAxis(1), 2);
+		else if(controllerOne.getRawAxis(1) < 0)
+		{	
+			return -Math.pow(controllerOne.getRawAxis(1), 2);
+		}
+		else 
+		{
+			return Math.pow(controllerOne.getRawAxis(1), 2);
+		}
 	}
 	
 	public double rightStickY()
 	{
-		if(controller.getRawAxis(3) < .2 && controller.getRawAxis(3) > -.2)
+		if(controllerOne.getRawAxis(3) < .2 && controllerOne.getRawAxis(3) > -.2)
 		{
 			return 0;
 		}
-		
-		return Math.pow(controller.getRawAxis(3), 2);
+		else if(controllerOne.getRawAxis(3) < 0)
+		{	
+			return -Math.pow(controllerOne.getRawAxis(3), 2);
+		}
+		else 
+		{
+			return Math.pow(controllerOne.getRawAxis(3), 2);
+		}
 	}
 	
 	public double joyTwist()
 	{
-		return Math.pow(controller.getRawAxis(3), 2);
+		return controllerOne.getRawAxis(3);
 	}
 }
 

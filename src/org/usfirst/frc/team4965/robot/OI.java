@@ -88,5 +88,11 @@ public class OI {
 	{
 		return controllerOne.getRawAxis(3);
 	}
+	
+	public double throttle()
+    {
+        return ((-controllerOne.getRawAxis(2)) + 1) / 2;
+    }
+    
 }
 

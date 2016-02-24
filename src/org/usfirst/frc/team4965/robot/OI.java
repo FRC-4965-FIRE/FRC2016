@@ -39,15 +39,17 @@ public class OI {
 	Joystick controllerOne = new Joystick(0);
 	Joystick controllerTwo = new Joystick(1);
 	
-	JoystickButton JoyTwo_ButtonZero = new JoystickButton(controllerTwo, 0);
 	JoystickButton JoyTwo_ButtonOne = new JoystickButton(controllerTwo, 1);
 	JoystickButton JoyTwo_ButtonTwo = new JoystickButton(controllerTwo, 2);
+	JoystickButton JoyTwo_ButtonThree = new JoystickButton(controllerTwo, 3);
+	JoystickButton JoyTwo_ButtonFour = new JoystickButton(controllerTwo, 4);
 	
 	public OI()
 	{
-		JoyTwo_ButtonZero.whileHeld(new IntakeBall());
-		JoyTwo_ButtonOne.whileHeld(new ReverseIntake());
-		JoyTwo_ButtonTwo.whenPressed(new FireBall());
+		JoyTwo_ButtonOne.whileHeld(new IntakeBall());
+		JoyTwo_ButtonTwo.whileHeld(new ReverseIntake());
+		JoyTwo_ButtonThree.whenPressed(new FireBall());
+		JoyTwo_ButtonFour.whileHeld(new SpinLauncher());
 	}
 	
 	public double leftStickY()

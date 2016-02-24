@@ -31,18 +31,18 @@ public class RobotMap {
 	public static final int DIO_ONE  = 1;*/
 	
 	//drivetrain
-	public static final int FrontLeft  = PWM_ZERO;
-	public static final int BackLeft   = PWM_ONE;
-	public static final int FrontRight = PWM_TWO;
-	public static final int BackRight  = PWM_THREE;
+	public static final int FrontLeft  = PWM_FIVE;
+	public static final int BackLeft   = PWM_SIX;
+	public static final int FrontRight = PWM_ONE;
+	public static final int BackRight  = PWM_TWO;
 	
 	//launcher
 	public static final int LauncherLeft  = PWM_FOUR;
-	public static final int LauncherRight = PWM_FIVE;
+	public static final int LauncherRight = PWM_THREE;
 	
 	//intake
 	//public static final int IntakeArm      = PWM_SIX;
-	public static final int IntakeRoller   = PWM_SIX;
+	public static final int IntakeRoller   = PWM_ZERO;
 	/*public static final int IntakeInLimit  = DIO_ZERO;
 	public static final int IntakeOutLimit = DIO_ONE;*/
 	

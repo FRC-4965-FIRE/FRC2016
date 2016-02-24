@@ -36,10 +36,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
-		drivetrain = DriveTrain.getInstance();
+    	drivetrain = DriveTrain.getInstance();
 		launcher = Launcher.getInstance();
 		intake = Intake.getInstance();
+		oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
         teleopCommand = new JoystickDrive();

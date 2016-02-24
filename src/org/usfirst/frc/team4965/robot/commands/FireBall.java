@@ -9,26 +9,27 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class FireBall extends Command {
-	Timer time;
+	Timer timer;
 
     public FireBall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.launcher);
     	requires(Robot.intake);
+    	
+    	timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	time = new Timer();
-    	time.reset();
+    	timer.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	time.start();
+    	timer.start();
     	Robot.launcher.spinWheels(1);
-    	if(time.get() == .5)
+    	if(timer.get() == .5)
     	{
     		Robot.intake.spinIntake(1);
     	}
@@ -36,12 +37,10 @@ public class FireBall extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(time.get() == 1)
-        {
+        if(timer.get() == 1)
         	return true;
-        }
-        
-        return false; 
+        else
+        	return false; 
     }
 
     // Called once after isFinished returns true

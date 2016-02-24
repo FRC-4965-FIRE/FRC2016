@@ -22,7 +22,7 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.tankDrive(Robot.oi.leftStickY(), Robot.oi.rightStickY());
+    	Robot.drivetrain.joystickDrive(Robot.oi.flightStickY(), Robot.oi.joyTwist(), Robot.oi.throttle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

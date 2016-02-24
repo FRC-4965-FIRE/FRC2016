@@ -9,35 +9,36 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveForTime extends Command {
-	Timer timer;
-	double time1;
+	Timer driveTime;
+	double time;
 	
     public DriveForTime(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
-    	time1 = time;
+    	
+    	driveTime = new Timer();
+    	this.time = time;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer = new Timer();
-    	timer.reset();
+    	driveTime = new Timer();
+    	driveTime.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	timer.start();
+    	driveTime.start();
     	Robot.drivetrain.tankDrive(.25, .25);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(timer.get() == time1)
-        {
+        if(driveTime.get() == time)
         	return true;
-        }
-        return false;
+        else
+        	return false;
     }
 
     // Called once after isFinished returns true

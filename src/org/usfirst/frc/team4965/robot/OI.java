@@ -39,6 +39,8 @@ public class OI {
 	Joystick controllerOne = new Joystick(0);
 	Joystick controllerTwo = new Joystick(1);
 	
+	JoystickButton JoyOne_ButtonOne = new JoystickButton(controllerOne, 1);
+	
 	JoystickButton JoyTwo_ButtonOne = new JoystickButton(controllerTwo, 1);
 	JoystickButton JoyTwo_ButtonTwo = new JoystickButton(controllerTwo, 2);
 	JoystickButton JoyTwo_ButtonThree = new JoystickButton(controllerTwo, 3);
@@ -46,6 +48,8 @@ public class OI {
 	
 	public OI()
 	{
+		JoyOne_ButtonOne.whenPressed(new ReverseDrive());
+		
 		JoyTwo_ButtonOne.whileHeld(new IntakeBall());
 		JoyTwo_ButtonTwo.whileHeld(new ReverseIntake());
 		JoyTwo_ButtonThree.whenPressed(new FireBall());
@@ -81,6 +85,22 @@ public class OI {
 		else 
 		{
 			return Math.pow(controllerOne.getRawAxis(3), 2);
+		}
+	}
+	
+	public double flightStickY()
+	{
+		if(controllerOne.getY() < .2 && controllerOne.getY() > -.2)
+		{
+			return 0;
+		}
+		else if(controllerOne.getY() < 0)
+		{	
+			return -Math.pow(controllerOne.getY(), 2);
+		}
+		else 
+		{
+			return Math.pow(controllerOne.getY(), 2);
 		}
 	}
 	

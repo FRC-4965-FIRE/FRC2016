@@ -52,12 +52,12 @@ public class DriveTrain extends Subsystem {
     		drive.tankDrive(leftSpeed, rightSpeed);
     }
     
-    public void joystickDrive(double linearSpeed, double rotationSpeed)
+    public void joystickDrive(double linearSpeed, double rotationSpeed, double throttle)
     {
     	if(ReverseDrive)
-    		drive.arcadeDrive(-linearSpeed, rotationSpeed);
+    		drive.arcadeDrive(-linearSpeed*throttle, rotationSpeed*throttle);
     	else
-    		drive.arcadeDrive(linearSpeed, rotationSpeed);
+    		drive.arcadeDrive(linearSpeed*throttle, rotationSpeed*throttle);
     }
 
     public void initDefaultCommand() {

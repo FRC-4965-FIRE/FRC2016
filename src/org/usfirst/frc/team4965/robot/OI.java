@@ -48,11 +48,11 @@ public class OI {
 	
 	public OI()
 	{
-		JoyOne_ButtonOne.whenPressed(new ReverseDrive());
+		//JoyOne_ButtonOne.whenPressed(new ReverseDrive());
 		
 		JoyTwo_ButtonOne.whileHeld(new IntakeBall());
 		JoyTwo_ButtonTwo.whileHeld(new ReverseIntake());
-		JoyTwo_ButtonThree.whenPressed(new FireBall());
+		JoyTwo_ButtonThree.whileHeld(new RunIntakeLaunch());
 		JoyTwo_ButtonFour.whileHeld(new SpinLauncher());
 	}
 	
@@ -90,17 +90,17 @@ public class OI {
 	
 	public double flightStickY()
 	{
-		if(controllerOne.getY() < .2 && controllerOne.getY() > -.2)
+		if(controllerOne.getRawAxis(1) < .2 && controllerOne.getRawAxis(1) > -.2)
 		{
 			return 0;
 		}
-		else if(controllerOne.getY() < 0)
+		else if(controllerOne.getRawAxis(1) < 0)
 		{	
-			return -Math.pow(controllerOne.getY(), 2);
+			return -Math.pow(controllerOne.getRawAxis(1), 2);
 		}
 		else 
 		{
-			return Math.pow(controllerOne.getY(), 2);
+			return Math.pow(controllerOne.getRawAxis(1), 2);
 		}
 	}
 	

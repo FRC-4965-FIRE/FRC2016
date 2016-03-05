@@ -15,7 +15,7 @@ public class DriveTrain extends Subsystem {
     VictorSP frontLeft, frontRight, backLeft, backRight;
     RobotDrive drive;
     
-    public static boolean ReverseDrive = false;
+    public static boolean ReverseDrive;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -34,6 +34,8 @@ public class DriveTrain extends Subsystem {
         drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
         drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+        
+        ReverseDrive = false;
     }
     
     public static DriveTrain getInstance()

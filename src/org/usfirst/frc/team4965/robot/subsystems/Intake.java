@@ -2,7 +2,7 @@ package org.usfirst.frc.team4965.robot.subsystems;
 
 import org.usfirst.frc.team4965.robot.RobotMap;
 
-//import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
     public static Intake instance;
     VictorSP intakeRoller;
+    DigitalInput ballLimit;
     //DigitalInput intakeIn, intakeOut;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -20,6 +21,7 @@ public class Intake extends Subsystem {
 	{
 		//intakeArm = new Victor(RobotMap.IntakeArm);
 		intakeRoller = new VictorSP(RobotMap.IntakeRoller);
+		ballLimit = new DigitalInput(RobotMap.BallLimit);
 		//intakeIn = new DigitalInput(RobotMap.IntakeInLimit);
 		//intakeOut = new DigitalInput(RobotMap.IntakeOutLimit);
 	}
@@ -45,6 +47,11 @@ public class Intake extends Subsystem {
 	public void stopIntake()
 	{
 		intakeRoller.set(0);
+	}
+	
+	public boolean ballIsIn()
+	{
+		return !ballLimit.get();
 	}
 	
 	/*public boolean isIn()

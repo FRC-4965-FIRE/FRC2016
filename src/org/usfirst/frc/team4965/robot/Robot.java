@@ -1,17 +1,21 @@
 
 package org.usfirst.frc.team4965.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4965.robot.commands.ExampleCommand;
-import org.usfirst.frc.team4965.robot.commands.JoystickDrive;
+import org.usfirst.frc.team4965.robot.commands.*;
 import org.usfirst.frc.team4965.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4965.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team4965.robot.subsystems.Intake;
 import org.usfirst.frc.team4965.robot.subsystems.Launcher;
+
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +34,8 @@ public class Robot extends IterativeRobot {
 	
     Command autonomousCommand;
     Command teleopCommand;
+    
+    CameraServer server;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -41,8 +47,13 @@ public class Robot extends IterativeRobot {
 		intake = Intake.getInstance();
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        autonomousCommand = new DriveForTime(4);
         teleopCommand = new JoystickDrive();
+        
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        //the camera name (ex "cam0") can be found through the roborio web interface
+        server.startAutomaticCapture("cam0");
     }
 	
 	public void disabledPeriodic() {
@@ -82,6 +93,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	SmartDashboard.putBoolean("Ball Limit", intake.ballIsIn());
         Scheduler.getInstance().run();
     }
     

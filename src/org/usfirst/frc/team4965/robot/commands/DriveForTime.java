@@ -19,23 +19,26 @@ public class DriveForTime extends Command {
     	
     	driveTime = new Timer();
     	this.time = time;
+    	
+    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	driveTime = new Timer();
     	driveTime.reset();
+    	driveTime.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	driveTime.start();
-    	Robot.drivetrain.tankDrive(.25, .25);
+    	//driveTime.start();
+    	Robot.drivetrain.tankDrive(-.5, -.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(driveTime.get() == time)
+        if(driveTime.get() >= time)
         	return true;
         else
         	return false;

@@ -11,16 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveForTime extends Command {
 	Timer driveTime;
 	double time;
+	double power;
 	
-    public DriveForTime(double time) {
+    public DriveForTime(double time, double power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
     	
     	driveTime = new Timer();
     	this.time = time;
-    	
-    	
+    	this.power = power;
     }
 
     // Called just before this Command runs the first time
@@ -33,7 +33,7 @@ public class DriveForTime extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//driveTime.start();
-    	Robot.drivetrain.tankDrive(-.5, -.5);
+    	Robot.drivetrain.tankDrive(-power, -power);
     }
 
     // Make this return true when this Command no longer needs to run execute()

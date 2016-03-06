@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4965.robot.commands.*;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     Command teleopCommand;
     
+    SendableChooser autoChooser;
     CameraServer server;
 
     /**
@@ -47,7 +49,10 @@ public class Robot extends IterativeRobot {
 		intake = Intake.getInstance();
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new DriveForTime(4);
+		autoChooser.addDefault("Low Bar", new DriveForTime(4, .5));
+		autoChooser.addObject("No Auto", new ExampleCommand());
+		SmartDashboard.putData("Select Autonomous Mode", autoChooser);
+
         teleopCommand = new JoystickDrive();
         
         server = CameraServer.getInstance();
@@ -62,6 +67,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	autonomousCommand = (Command) autoChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

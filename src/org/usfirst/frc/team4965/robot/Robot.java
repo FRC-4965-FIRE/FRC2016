@@ -51,7 +51,8 @@ public class Robot extends IterativeRobot {
         // instantiate the command used for the autonomous period
 		autoChooser.addDefault("Low Bar", new DriveForTime(4, .5));
 		autoChooser.addObject("No Auto", new ExampleCommand());
-		autoChooser.addObject("Test Auto", new DriveForTime(SmartDashboard.getNumber("Auto Time"), SmartDashboard.getNumber("Auto Power")));
+		autoChooser.addObject("Test Auto", new DriveForTime(SmartDashboard.getNumber("Auto Time", 0), 
+															SmartDashboard.getNumber("Auto Power", 0)));
 		SmartDashboard.putData("Select Autonomous Mode", autoChooser);
 
         teleopCommand = new JoystickDrive();

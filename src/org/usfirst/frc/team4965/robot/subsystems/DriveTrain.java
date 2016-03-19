@@ -6,6 +6,7 @@ import org.usfirst.frc.team4965.robot.commands.JoystickDrive;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 /**
  *
@@ -14,6 +15,7 @@ public class DriveTrain extends Subsystem {
 	public static DriveTrain instance;
     VictorSP frontLeft, frontRight, backLeft, backRight;
     RobotDrive drive;
+    Ultrasonic ultrasonic;
     
     public static boolean ReverseDrive;
 	
@@ -29,6 +31,9 @@ public class DriveTrain extends Subsystem {
     	backRight = new VictorSP(RobotMap.BackRight);
     	
     	drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+    	
+    	ultrasonic = new Ultrasonic(RobotMap.UltrasonicPing, RobotMap.UltrasonicEcho);
+    	ultrasonic.setAutomaticMode(true);
     	
     	drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
@@ -61,7 +66,12 @@ public class DriveTrain extends Subsystem {
     	else
     		drive.arcadeDrive(linearSpeed*throttle, rotationSpeed*throttle);
     }
-
+    
+    public double getSonarDistance()
+    {
+    	return ultrasonic.getRangeInches();
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

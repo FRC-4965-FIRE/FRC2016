@@ -30,11 +30,17 @@ public class RobotMap {
 	public static final int DIO_ZERO = 0;
 	//public static final int DIO_ONE  = 1;
 	
+	//analog
+	public static final int ANALOG_ZERO = 0;
+	public static final int ANALOG_ONE  = 1;	
+	
 	//drivetrain
-	public static final int FrontLeft  = PWM_FIVE;
-	public static final int BackLeft   = PWM_SIX;
-	public static final int FrontRight = PWM_ONE;
-	public static final int BackRight  = PWM_TWO;
+	public static final int FrontLeft      = PWM_FIVE;
+	public static final int BackLeft       = PWM_SIX;
+	public static final int FrontRight     = PWM_ONE;
+	public static final int BackRight  	   = PWM_TWO;
+	public static final int UltrasonicPing = ANALOG_ZERO;
+	public static final int UltrasonicEcho = ANALOG_ONE;
 	
 	//launcher
 	public static final int LauncherLeft  = PWM_FOUR;

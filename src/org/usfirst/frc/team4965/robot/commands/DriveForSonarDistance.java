@@ -1,58 +1,50 @@
 package org.usfirst.frc.team4965.robot.commands;
 
 import org.usfirst.frc.team4965.robot.Robot;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class FireBall extends Command {
-	Timer timer;
-
-    public FireBall() {
+public class DriveForSonarDistance extends Command {
+	double distance;
+	double power;
+	
+    public DriveForSonarDistance(double distance, double power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.launcher);
-    	requires(Robot.intake);
+    	requires(Robot.drivetrain);
     	
-    	timer = new Timer();
+    	this.distance = distance;
+    	this.power = power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	timer.start();
-    	Robot.launcher.spinWheels(1);
-    	if(timer.get() >= .5)
-    	{
-    		Robot.intake.spinIntake(1);
-    	}
+    	Robot.drivetrain.tankDrive(power, power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(timer.get() >= 1)
+        if((power > 0 && Robot.drivetrain.getSonarDistance() <= distance) || 
+           (power < 0 && Robot.drivetrain.getSonarDistance() >= distance))
         	return true;
         else
-        	return false; 
+        	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.launcher.stopWheels();
-    	Robot.intake.stopIntake();
+    	Robot.drivetrain.tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.launcher.stopWheels();
-    	Robot.intake.stopIntake();
+    	Robot.drivetrain.tankDrive(0, 0);
     }
 }

@@ -3,7 +3,9 @@ package org.usfirst.frc.team4965.robot.subsystems;
 import org.usfirst.frc.team4965.robot.RobotMap;
 import org.usfirst.frc.team4965.robot.commands.JoystickDrive;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -16,6 +18,7 @@ public class DriveTrain extends Subsystem {
     VictorSP frontLeft, frontRight, backLeft, backRight;
     RobotDrive drive;
     Ultrasonic ultrasonic;
+    AnalogGyro gyro;
     
     public static boolean ReverseDrive;
 	
@@ -34,6 +37,8 @@ public class DriveTrain extends Subsystem {
     	
     	ultrasonic = new Ultrasonic(RobotMap.UltrasonicPing, RobotMap.UltrasonicEcho);
     	ultrasonic.setAutomaticMode(true);
+    	
+    	gyro = new AnalogGyro(RobotMap.Gyro);
     	
     	drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
@@ -70,6 +75,23 @@ public class DriveTrain extends Subsystem {
     public double getSonarDistance()
     {
     	return ultrasonic.getRangeInches();
+    }
+    
+    public double getAngle()
+    {
+    	return gyro.getAngle();
+    }
+    
+    public void resetGyro()
+    {
+    	gyro.reset();
+    }
+    
+    public void driveStraight(double power, double Kp)
+    {
+    	gyro.reset();
+    	drive.drive(power, gyro.getAngle() * Math.abs(Kp));
+    	Timer.delay(.004);
     }
     
     public void initDefaultCommand() {

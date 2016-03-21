@@ -102,6 +102,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	SmartDashboard.putBoolean("Ball Limit", intake.ballIsIn());
+    	SmartDashboard.putNumber("Gyro", drivetrain.getAngle());
+    	SmartDashboard.putNumber("Ultrasonic", drivetrain.getSonarDistance());
         Scheduler.getInstance().run();
     }
     

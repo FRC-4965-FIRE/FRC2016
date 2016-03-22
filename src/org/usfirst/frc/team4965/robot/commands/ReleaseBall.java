@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunIntakeLaunch extends Command {
+public class ReleaseBall extends Command {
 
-    public RunIntakeLaunch() {
+    public ReleaseBall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
+    	requires(Robot.launcher);
     }
 
     // Called just before this Command runs the first time
@@ -21,10 +22,8 @@ public class RunIntakeLaunch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.intake.ballIsIn())
-    	{
-    		Robot.intake.spinIntake(1);
-    	}
+    	Robot.intake.spinIntake(1);
+    	Robot.launcher.spinWheels(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,12 +33,14 @@ public class RunIntakeLaunch extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.launcher.stopWheels();
     	Robot.intake.stopIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.launcher.stopWheels();
     	Robot.intake.stopIntake();
     }
 }

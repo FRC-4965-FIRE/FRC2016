@@ -15,9 +15,6 @@ import org.usfirst.frc.team4965.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team4965.robot.subsystems.Intake;
 import org.usfirst.frc.team4965.robot.subsystems.Launcher;
 
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.Image;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot

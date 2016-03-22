@@ -7,10 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeBall extends Command {
-	boolean intaking;
+public class ManualIntake extends Command {
 
-    public IntakeBall() {
+    public ManualIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
@@ -18,24 +17,16 @@ public class IntakeBall extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!Robot.intake.ballIsIn())
-    		intaking = true;
-    	else
-    		intaking = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		Robot.intake.spinIntake(1);
+    		Robot.intake.spinIntake(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//return false;
-    	if(intaking = true)
-        	return Robot.intake.ballIsIn();
-    	else 
-    		return false;
+        return false;
     }
 
     // Called once after isFinished returns true

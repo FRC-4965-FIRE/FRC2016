@@ -52,7 +52,7 @@ public class OI {
 		
 		JoyTwo_ButtonOne.whileHeld(new IntakeBall());
 		JoyTwo_ButtonTwo.whileHeld(new ReverseIntake());
-		JoyTwo_ButtonThree.whileHeld(new RunIntakeLaunch());
+		//JoyTwo_ButtonThree.whileHeld(new ManualIntake());
 		JoyTwo_ButtonFour.whileHeld(new SpinLauncher());
 	}
 	

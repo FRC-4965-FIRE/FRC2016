@@ -29,7 +29,7 @@ public class FireBall extends Command {
     protected void execute() {
     	timer.start();
     	Robot.launcher.spinWheels(1);
-    	if(timer.get() >= .5)
+    	if(timer.get() >= 1)
     	{
     		Robot.intake.spinIntake(1);
     	}
@@ -37,7 +37,7 @@ public class FireBall extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(timer.get() >= 1)
+        if(timer.get() >= 1.5)
         	return true;
         else
         	return false; 

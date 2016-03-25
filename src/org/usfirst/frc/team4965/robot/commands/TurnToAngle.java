@@ -2,41 +2,44 @@ package org.usfirst.frc.team4965.robot.commands;
 
 import org.usfirst.frc.team4965.robot.Robot;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveForTime extends Command {
-	Timer driveTime;
-	double time;
+public class TurnToAngle extends Command {
+	double angle;
 	double power;
-	
-    public DriveForTime(double time, double power) {
+	boolean turnRight;
+
+    public TurnToAngle(double angle, double power, boolean turnRight) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
     	
-    	driveTime = new Timer();
-    	this.time = time;
+    	this.angle = angle;
     	this.power = power;
+    	this.turnRight = turnRight;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	driveTime.reset();
-    	driveTime.start();
+    	Robot.drivetrain.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.tankDrive(-power, -power);
+    	if(turnRight)
+    		Robot.drivetrain.tankDrive(-power, power);
+    	else
+    		Robot.drivetrain.tankDrive(power, -power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(driveTime.get() >= time)
+        if(turnRight && Robot.drivetrain.getAngle() >= angle)
+        	return true;
+        else if(!turnRight && Robot.drivetrain.getAngle() <= angle)
         	return true;
         else
         	return false;

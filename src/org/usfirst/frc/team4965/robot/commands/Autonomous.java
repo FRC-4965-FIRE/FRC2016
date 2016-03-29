@@ -1,13 +1,16 @@
 package org.usfirst.frc.team4965.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
 public class Autonomous extends CommandGroup {
-    
-    public  Autonomous() {
+    Timer time;
+	
+    public  Autonomous(Command cmd) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -24,7 +27,16 @@ public class Autonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	time = new Timer();
+    	time.reset();
+    	time.start();
     	
-    	addSequential(new DriveForTime(2, .5));
+    	addSequential(new LowerArm());
+    	if(time.get() >= .5)
+    	{
+    		addParallel(new StopArm());
+    	}
+    	
+    	addSequential(cmd);
     }
 }

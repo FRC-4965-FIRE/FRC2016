@@ -25,6 +25,7 @@ public class RobotMap {
 	public static final int PWM_FIVE  = 5;
 	public static final int PWM_SIX   = 6;
 	public static final int PWM_SEVEN = 7;
+	public static final int PWM_EIGHT = 8;
 	
 	//dio
 	public static final int DIO_ZERO = 0;
@@ -54,5 +55,8 @@ public class RobotMap {
 	public static final int BallLimit    = DIO_ZERO;    
 	/*public static final int IntakeInLimit  = DIO_ZERO;
 	public static final int IntakeOutLimit = DIO_ONE;*/
+	
+	//defense arm
+	public static final int DefenseArm = PWM_EIGHT;
 	
 }

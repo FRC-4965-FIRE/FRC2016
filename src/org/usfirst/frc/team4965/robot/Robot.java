@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4965.robot.commands.*;
+import org.usfirst.frc.team4965.robot.subsystems.DefenseArm;
 import org.usfirst.frc.team4965.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4965.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team4965.robot.subsystems.Intake;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Launcher launcher;
 	public static Intake intake;
+	public static DefenseArm defenseArm;
 	
     Command autonomousCommand;
     Command teleopCommand;
@@ -44,12 +46,14 @@ public class Robot extends IterativeRobot {
     	drivetrain = DriveTrain.getInstance();
 		launcher = Launcher.getInstance();
 		intake = Intake.getInstance();
+		defenseArm = DefenseArm.getInstance();
 		oi = new OI();
         // instantiate the command used for the autonomous period
 		autoChooser.addDefault("Low Bar", new DriveForTime(4, .5));
 		autoChooser.addObject("No Auto", new ExampleCommand());
 		autoChooser.addObject("Test Auto", new DriveForTime(SmartDashboard.getNumber("Auto Time", 0), 
 															SmartDashboard.getNumber("Auto Power", 0)));
+		autoChooser.addObject("Low Bar with Arm", new Autonomous(new DriveForTime(4, .5)));
 		SmartDashboard.putData("Select Autonomous Mode", autoChooser);
 
         teleopCommand = new JoystickDrive();

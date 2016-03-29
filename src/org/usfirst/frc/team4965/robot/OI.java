@@ -45,6 +45,8 @@ public class OI {
 	JoystickButton JoyTwo_ButtonTwo = new JoystickButton(controllerTwo, 2);
 	JoystickButton JoyTwo_ButtonThree = new JoystickButton(controllerTwo, 3);
 	JoystickButton JoyTwo_ButtonFour = new JoystickButton(controllerTwo, 4);
+	JoystickButton JoyTwo_ButtonFive = new JoystickButton(controllerTwo, 5);
+	JoystickButton JoyTwo_ButtonSix = new JoystickButton(controllerTwo, 6);
 	
 	public OI()
 	{
@@ -54,6 +56,8 @@ public class OI {
 		JoyTwo_ButtonTwo.whileHeld(new ReverseIntake());
 		//JoyTwo_ButtonThree.whileHeld(new ManualIntake());
 		JoyTwo_ButtonFour.whileHeld(new SpinLauncher());
+		JoyTwo_ButtonFive.whileHeld(new LowerArm());
+		JoyTwo_ButtonSix.whileHeld(new RaiseArm());
 	}
 	
 	public double leftStickY()
